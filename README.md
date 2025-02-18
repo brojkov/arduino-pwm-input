@@ -2,9 +2,7 @@
 Accurately read fast and noisy PWM signals on an Arduino.
 
 ## Background
-I wrote this when I could not find Arduino code online that could accurately read 25kHz pwm signals and handle all the edge cases.
-
-**Edge cases you must handle for reliable PWM**
+I wrote this when I could not find Arduino code online that could accurately and reliably read 25kHz pwm signals. For reliable PWM you *must* handle the following edge cases:
 * 100% or 0% PWM signal with no edges
 * Sporadically missing edges, or edges which do not reliably trigger the interrupt. This can happen when a PWM signal is close to 0 or 100%
 * Jitter: Noise that causes edges to arrive early or late.
