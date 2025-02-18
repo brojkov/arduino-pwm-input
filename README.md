@@ -4,8 +4,6 @@ Accurately read fast and noisy PWM signals on an Arduino.
 ## Background
 I wrote this when I could not find Arduino code online that could accurately read 25kHz pwm signals and handle all the edge cases.
 
-The only way to get sufficiently accurate timing on an arduino input is to use the input capture interrupt with a hardware timer. You must use Timer1, as you will need 16 bits. This uses pin PB0, or pin 8 on the Uno. It also means that functionality which relies on Timer1 will not be avaliable.
-
 **Edge cases you must handle for reliable PWM**
 * 100% or 0% PWM signal with no edges
 * Sporadically missing edges, or edges which do not reliably trigger the interrupt. This can happen when a PWM signal is close to 0 or 100%
@@ -13,6 +11,7 @@ The only way to get sufficiently accurate timing on an arduino input is to use t
 
 ## How this works
 To compute the PWM signal requires two pieces of information: the period of the signal, and the duration for which it is high.
+The only way to get sufficiently accurate timing on an arduino input is to use the input capture interrupt with a hardware timer. You must use Timer1, as you will need 16 bits. This uses pin PB0, or pin 8 on the Uno. It also means that functionality which relies on Timer1 will not be avaliable.
 
 ### Basic Operation
 We will detect and time two subsequent rising edges, r1 and r2, and then a falling edge, f:
